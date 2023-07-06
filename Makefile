@@ -2,9 +2,6 @@ CC := gcc
 CFLAGS := -Wall -Wextra -std=c99
 LDFLAGS := -lSDL2 -lSDL2_ttf
 
-snake.app: snake
-	osacompile -o snake script.applescript
-
 snake: snake.o engine.o
 	$(CC) $(CFLAGS) -o snake snake.o engine.o $(LDFLAGS)
 
@@ -17,4 +14,4 @@ engine.o: engine.c engine.h
 .PHONY: clean
 
 clean:
-	rm -f snake snake.o engine.o
+	rm -f snake *.o
