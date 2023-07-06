@@ -1,1 +1,1 @@
-do shell script "./snake"
+do shell script "./snake.app"
