@@ -11,7 +11,7 @@ typedef struct {
 } Position;
 
 Engine engine;
-Position snake[(SCREEN_WIDTH / 20) * (SCREEN_HEIGHT / 20)];  // Set snake length to maximum cells
+Position snake[8 * (SCREEN_WIDTH / CELL_SIZE) * (SCREEN_HEIGHT / CELL_SIZE)]; // position to cover all cells
 int snakeLength;
 Position food;
 Position velocity;
