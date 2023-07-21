@@ -32,20 +32,23 @@ void clearRender(Engine *engine) {
   SDL_RenderClear(engine->renderer);
 }
 
-SDL_Rect createTextCentered(Engine *engine, int x, int y, SDL_Color color) {
-  SDL_Surface *surface = TTF_RenderText_Solid(engine->font, "Press any key to start", color);
-  SDL_Texture *texture = SDL_CreateTextureFromSurface(engine->renderer, surface);
+SDL_Texture* createTextTexture(Engine* engine, const char* text, SDL_Color color) {
+    SDL_Surface* surface = TTF_RenderText_Solid(engine->font, text, color);
+    SDL_Texture* texture = SDL_CreateTextureFromSurface(engine->renderer, surface);
+    SDL_FreeSurface(surface); // Free the surface immediately after creating the texture
+    return texture;
+}
 
-  SDL_Rect text;
-  text.x = (x - surface->w) / 2;
-  text.y = (y - surface->h) / 2;
-  text.w = surface->w;
-  text.h = surface->h;
+void renderTextCentered(Engine* engine, SDL_Texture* texture, int x, int y) {
+    
+    int width, height;
+    SDL_QueryTexture(texture, NULL, NULL, &width, &height);
 
-  SDL_RenderCopy(engine->renderer, texture, NULL, &text);
+    SDL_Rect textRect;
+    textRect.x = x - width / 2;
+    textRect.y = y - height / 2;
+    textRect.w = width;
+    textRect.h = height;
 
-  SDL_FreeSurface(surface);
-  SDL_DestroyTexture(texture);
-
-  return text;
+    SDL_RenderCopy(engine->renderer, texture, NULL, &textRect);
 }

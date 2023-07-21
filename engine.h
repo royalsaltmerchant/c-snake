@@ -16,6 +16,8 @@ void freeEngine(Engine *engine);
 
 void clearRender(Engine *engine);
 
-SDL_Rect createTextCentered(Engine *engine, int x, int y, SDL_Color color);
+SDL_Texture* createTextTexture(Engine* engine, const char* text, SDL_Color color);
+
+void renderTextCentered(Engine* engine, SDL_Texture* texture, int x, int y);
 
 #endif

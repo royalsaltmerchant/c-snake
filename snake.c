@@ -16,6 +16,8 @@ int snakeLength;
 Position food;
 Position velocity;
 int gameState;
+SDL_Color textColor = {255, 255, 255, 255};
+SDL_Texture* startTexture;
 
 void init() {
   char *title = "Snake";
@@ -25,6 +27,9 @@ void init() {
   srand(time(NULL));  // seed random number generator
   // Game
   gameState = 2;  // Set to starting game state
+  // graphics
+  // start screen text
+  startTexture = createTextTexture(&engine, "Press any key to start", textColor);
 }
 
 void initSnake() {
@@ -150,8 +155,7 @@ void render() {
     }
     case 2: {
       // Render the start screen
-      SDL_Color textColor = {255, 255, 255, 255};
-      createTextCentered(&engine, SCREEN_WIDTH, SCREEN_HEIGHT, textColor);
+      renderTextCentered(&engine, startTexture, SCREEN_WIDTH / 2, SCREEN_HEIGHT / 2);
       // render
       SDL_RenderPresent(engine.renderer);
       break;
@@ -168,6 +172,8 @@ int main() {
     SDL_Delay(90);
   }
 
+  // cleanup
+  SDL_DestroyTexture(startTexture);
   freeEngine(&engine);
   return 0;
 }
