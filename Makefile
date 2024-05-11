@@ -1,6 +1,6 @@
 CC := gcc
-CFLAGS := -Wall -Wextra -std=c99 -mmacosx-version-min=11.0
-LDFLAGS := -lSDL2 -lSDL2_ttf -mmacosx-version-min=11.0
+CFLAGS := -Wall -Wextra -std=c99
+LDFLAGS := -lSDL2 -lSDL2_ttf
 
 snake: snake.o engine.o
 	$(CC) $(CFLAGS) -o snake snake.o engine.o $(LDFLAGS)

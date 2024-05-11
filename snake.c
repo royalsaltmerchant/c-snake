@@ -21,7 +21,7 @@ SDL_Texture* startTexture;
 
 void init() {
   char *title = "Snake";
-  char *fontLocation = "../Resources/OpenSans-Regular.ttf";
+  char *fontLocation = "./assets/OpenSans-Regular.ttf";
   initEngine(&engine, title, SCREEN_WIDTH, SCREEN_HEIGHT, fontLocation, 24);
   // Time
   srand(time(NULL));  // seed random number generator
